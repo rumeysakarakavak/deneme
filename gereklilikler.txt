@@ -1,0 +1,130 @@
+TOKENS
+
+
+token for anyxml : H6oGKTxkyb1_9P7fyoX8   
+
+token for elibc : oWpmtvzUieyc71fTXBUV  
+
+token for HGW : EkU4ADNY5xd-q_MNH-pz
+
+token for chargeone : XsQ1suwMAuTbyKyDVrdW
+
+Ama sanirim ayri ayri tokenlara gerek yok :D
+
+
+
+
+
+CLONE
+
+
+HGW_TR clone  : git clone https://git:XsQ1suwMAuTbyKyDVrdW@codehub-dg-y.huawei.com/LocalProductionTurkey/HGW.git
+HGW_CN clone : git clone https://git:EkU4ADNY5xd-q_MNH-pz@codehub-dg-y.huawei.com/HomeNetwork/HomeNetwork_Main/code.git
+
+ChargeOneTR clone : git clone https://git:XsQ1suwMAuTbyKyDVrdW@codehub-dg-y.huawei.com/LocalProductionTurkey/ChargeOne.git
+
+elibc clone : git clone https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/Embedded_Competency_center/BaizeC/elibc.git
+
+
+Lantern server : http://100.106.81.209:8008/
+
+server common path: \\10.122.124.102\tk_f\Wireless\Server
+
+
+Anyxml kucuk not : kodu calistirmak icin : conan create . buildi yeni aldigin zaman -b ile calistir  RES testini kapatmis
+
+
+conan config install https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/Embedded_Competency_center/configuration.git --verify-ssl false
+git clone https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/OpenSourceCenter/compiler-rt.git
+
+
+
+
+
+
+ADDING UPSTREAM and PULL CODE
+
+orijinal master a yapilan mergeleri kendi forked masteriniza pull etmek icin: 
+
+git remote add upstream https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/Embedded_Competency_center/BaizeC/anyxml.git
+
+git remote add upstream https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/Embedded_Competency_center/BaizeC/elibc.git
+
+git remote set-url origin https://git:H6oGKTxkyb1_9P7fyoX8@codehub-dg-y.huawei.com/r84230712/elibc.git
+
+git pull upstream master       
+
+bunu kendi forked master'iniza pushlamak icin:
+
+$ git push origin master
+
+
+
+LINE COVERAGE
+
+
+conan create . -b -o anyxml:coverage=True -s build_type=Debug
+
+lcov -d /home/baize/.conan/data/anyxml/0.1.0/_/_/build/2844049cc32f27b85c2fa6006ab48b01ee139c81/CMakeFiles/anyxml.dir/src -b src -c -o coverage.info
+
+genhtml -o output/coverage coverage.info
+
+
+/.conan/data/anyxml/0.1.0/_/_/build/2844049cc32f27b85c2fa6006ab48b01ee139c81/output/coverage/src   covarage htmlleri
+
+zip -r <coverage results> output/
+
+xdg-open /usr/r84230712/anyxml/output/coverage/src/anyxml_parser.c.func.html        htmli terminalde goruntulemek icin
+
+
+
+VALGRIND 
+
+valgrind --leak-check=full /usr/r84230712/anyxml/test/build/572fb30b4e3a5eb62874e577fb009375563aefe0/bin/sax_sdv_anyxml
+
+
+
+
+COMMIT MERGE
+
+git reset --soft HEAD~2
+git commit -m "getopt function"
+git push --force origin HEAD
+
+
+
+BUILD HATASI
+
+
+conan config install
+conan create . -b  -s build_type=Debug
+conan create . -s build_type=Debug
+conan create . -s build_type=Debug --build=dtest
+
+
+CONFLICT - PULL UPSTREAM
+
+git fetch --all
+git pull upstream master
+git add filename
+git commit -m ""
+git push
+
+
+git log --oneline (get upstream/master commit id)
+git reset 4d6a3b1 --soft
+git commit -m "test cases added for ctype"
+git push origin master_r84230712_getopt --force
+
+
+
+./build.sh smu02x
+
+username: f84231664
+pass: 123456
+
+
+admin / Test_1234
+https://10.26.119.21/home.asp
+
+export Lang=zibidik
